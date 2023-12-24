@@ -3,8 +3,8 @@
 #write jenkins home directory address
 JENKINS_ADDRESS=/var/lib/jenkins/jobs
 
-#removes all the builds except the latest one and two other files called legacyIds permalinks
-find $JENKINS_ADDRESS -name "build" -type d | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -1 | xargs rm -rf); done
+#clean up old jenkins builds except 5 latest builds and dev and master branch
+find $JENKINS_ADDRESS -name "builds" -type d | grep -vE '/(master|dev)/builds$' | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -5 | xargs rm -rf); done
 
-#if you want to skip dev and master  branches
-find $JENKINS_ADDRESS -name "builds" -type d | grep -vE '/(master|dev)/builds$' | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -1 | xargs rm -rf); done
+#clean up old jenkins builds except 5 latest builds on all branches
+find $JENKINS_ADDRESS -name "builds" -type d | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -5 | xargs rm -rf); done
