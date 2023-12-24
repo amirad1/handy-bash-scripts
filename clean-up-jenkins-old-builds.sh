@@ -7,4 +7,4 @@ JENKINS_ADDRESS=/var/lib/jenkins/jobs
 find $JENKINS_ADDRESS -name "build" -type d | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -1 | xargs rm -rf); done
 
 #if you want to skip dev and master  branches
-find /var/lib/jenkins/jobs/ -name "builds" -type d | grep -vE '/(master|dev)/builds$' | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -1 | xargs rm -rf); done
+find $JENKINS_ADDRESS -name "builds" -type d | grep -vE '/(master|dev)/builds$' | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -1 | xargs rm -rf); done
