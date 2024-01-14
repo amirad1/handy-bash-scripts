@@ -6,4 +6,4 @@ Find docker containers ip
 
 Find kubernetes pods ip
 
-Get 
+Get and justify linux open ports
