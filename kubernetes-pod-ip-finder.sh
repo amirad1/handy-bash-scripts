@@ -1,10 +1,21 @@
 #!/bin/sh
 #find-k8s-pods-lists
 
-podid=$(kubectl get pods -n dev | awk '{print $1}')
+echo "                  "
+
+kubectl get ns | awk 'NR > 1 {print $1}'
+echo "                  "
+
+echo "Enter your namespace from the above list:"
+
+read NS
+
+podid=$(kubectl get pods -n $NS | awk 'NR > 1 { print $1 }')
 
 for i in $podid;
 do
-kubectl exec --tty --stdin -n dev $i ip address | grep 'inet 10' | awk '{print $2}' >> pods-ip-list.txt
-echo $i >> pods-ip-list.txt;
+        ipn=$(kubectl -n $NS get pod $i -o jsonpath='{.status.podIP}')
+
+echo "$i : $ipn"
+
 done
