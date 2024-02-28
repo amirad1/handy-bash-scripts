@@ -3,6 +3,8 @@
 #get jenkins home directory address
 read JENKINS_ADDRESS
 
+echo "The Jenkins Address is $JENKINS_ADDRESS , wait to finalize clean up"
+
 #default jenkins address
 #JENKINS_ADDRESS='/var/lib/jenkins/jobs'
 
@@ -11,3 +13,5 @@ find $JENKINS_ADDRESS -name "builds" -type d | grep -vE '/(master|dev)/builds$' 
 
 #clean up old jenkins builds except 5 latest builds on all branches
 find $JENKINS_ADDRESS -name "builds" -type d | while read dir; do (cd "$dir" && ls -d */ | sort -n | head -n -5 | xargs rm -rf); done
+
+echo "THE CLEAN UP IS DONE"
