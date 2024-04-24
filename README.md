@@ -7,3 +7,5 @@ This repository contain some of the most usefull bash scripts to help DevOps Eng
 ## Find kubernetes pods ip github command scripts
 
 ## Get and justify linux open ports command scripts
+
+## Show you all open ports from specific IP address
