@@ -1,9 +1,11 @@
 #!/bin/bash
-#
+
+#colorize results
 RED="\e[31m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 
+#change directory
 MICROSERVICES_DIR="/var/lib/jenkins/jobs/{your-path}/jobs"
 
 # Find all jenkins pipelines directories
